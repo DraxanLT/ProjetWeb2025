@@ -3,7 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use App\Models\CommonLife;
+use App\Policies\CommonLifePolicy;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,5 +24,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Schema::defaultStringLength(191);
+
+        // Associates the model CommonLife with the policy CommonLifePolicy
+        Gate::policy(CommonLife::class, CommonLifePolicy::class);
     }
 }
