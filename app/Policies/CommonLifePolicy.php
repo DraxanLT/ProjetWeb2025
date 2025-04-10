@@ -37,7 +37,7 @@ class CommonLifePolicy
      */
     public function update(User $user, CommonLife $commonLife): bool
     {
-        return false;
+        return $user->id === $commonLife->user_id;
     }
 
     /**

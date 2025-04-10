@@ -45,9 +45,9 @@ Route::middleware('auth')->group(function () {
 
         // Common life
         Route::get('common-life', [CommonLifeController::class, 'index'])->name('common-life.index');
-        Route::post('common-life', [CommonLifeController::class, 'store'])->name('common-life.store');
-        Route::delete('common-life/{commonLife}', [CommonLifeController::class, 'destroy'])->name('common-life.destroy');
-
+        Route::post('common-life', [CommonLifeController::class, 'store'])->name('common-life.store'); // Route to store the task in the db
+        Route::delete('common-life/{commonLife}', [CommonLifeController::class, 'destroy'])->name('common-life.destroy'); // Route to delete the task from the db
+        Route::put('common-life/{commonLife}', [CommonLifeController::class, 'update'])->name('common-life.update'); // Route to update the task from the db
     });
 
 });
