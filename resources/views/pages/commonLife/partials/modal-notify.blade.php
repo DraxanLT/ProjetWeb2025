@@ -1,24 +1,28 @@
-{{-- Form that appears when you click on the "Edit" button --}}
-<div class="modal" data-modal="true" id="modal_edit_{{ $commonLife->task_id }}">
+{{-- Form that appears when you click on the "Notify" button --}}
+<div class="modal" data-modal="true" id="modal_notify_{{ $commonLife->task_id }}">
     <div class="modal-content max-w-[600px] top-[10%]">
         <div class="card-header">
             {{-- Form title --}}
             <h3 class="modal-title">
-                Modifier la tâche
+                Notifier votre effort
             </h3>
             <button class="btn btn-xs btn-icon btn-light" data-modal-dismiss="true">
                 <i class="ki-outline ki-cross">
                 </i>
             </button>
         </div>
-        <form method="POST" action="{{route('common-life.update', ['commonLife' => $commonLife->task_id])}}">
+        <form method="POST" action="{{route('comments.store')}}">
             <div class="card-body flex flex-col gap-5">
-                {{-- Form to edit a task --}}
+                {{-- Form to notify the completed task --}}
                 @csrf
-                @method('PUT')
-                <x-forms.input name="title" type="text" :label="__('Titre')" :value="$commonLife->title"/>
+                {{-- Explanations --}}
+                <div>
+                    Vous avez fini cette tâche ? Mettez un commentaire expliquant ce que vous avez fait !
+                </div>
 
-                <x-forms.input name="description" type="text" :label="__('Description')" :value="$commonLife->description"/>
+                <input type="hidden" name="task_id" value="{{ $commonLife->task_id }}">
+
+                <x-forms.input name="comment" type="text" :label="__('Commentaire')" />
             </div>
             <div class="card-footer justify-end">
                 <div class="flex gap-4">
@@ -28,7 +32,7 @@
                     </button>
                     {{-- Validate button --}}
                     <x-forms.primary-button>
-                        {{ __('Modifier') }}
+                        {{ __('Notifier') }}
                     </x-forms.primary-button>
                 </div>
             </div>

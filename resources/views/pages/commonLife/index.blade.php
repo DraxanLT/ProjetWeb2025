@@ -8,7 +8,7 @@
     </x-slot>
 
     <!-- begin: grid -->
-    <div class="grid gap-5 lg:gap-7.5 items-stretch">
+    <div class="grid lg:grid-cols-3 gap-5 lg:gap-7.5 items-stretch">
         <div class="lg:col-span-2">
             <div class="grid gap-2">
                 {{-- Shows all tasks --}}
@@ -24,6 +24,18 @@
                 @endforelse
 
                 @include('pages.commonLife.partials.modal-add')
+            </div>
+        </div>
+        <div class="lg:col-span-1">
+            <div class="card h-full">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        Tâches réalisées
+                    </h3>
+                </div>
+                <div class="card-body">
+
+                </div>
             </div>
         </div>
     </div>

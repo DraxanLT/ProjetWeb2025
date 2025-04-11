@@ -30,12 +30,12 @@
                 <div class="card-footer justify-end">
                     <div class="flex gap-4">
                         {{-- Cancel button --}}
-                        <button class="btn btn-light" data-modal-dismiss="true">
+                        <button type="button" class="btn btn-light" data-modal-dismiss="true">
                             Annuler
                         </button>
                         {{-- Validate button --}}
                         <x-forms.primary-button>
-                            {{ __('Valider') }}
+                            {{ __('Ajouter') }}
                         </x-forms.primary-button>
                     </div>
                 </div>

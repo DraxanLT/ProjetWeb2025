@@ -9,6 +9,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\KnowledgeController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\CommentController; // Use the controller for comments
 use Illuminate\Support\Facades\Route;
 
 // Redirect the root path to /dashboard
@@ -48,6 +49,9 @@ Route::middleware('auth')->group(function () {
         Route::post('common-life', [CommonLifeController::class, 'store'])->name('common-life.store'); // Route to store the task in the db
         Route::delete('common-life/{commonLife}', [CommonLifeController::class, 'destroy'])->name('common-life.destroy'); // Route to delete the task from the db
         Route::put('common-life/{commonLife}', [CommonLifeController::class, 'update'])->name('common-life.update'); // Route to update the task from the db
+            // Comment
+            Route::post('comments', [CommentController::class, 'store'])->name('comments.store'); // Route to store a comment
+
     });
 
 });

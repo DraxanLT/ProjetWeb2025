@@ -13,12 +13,14 @@
         </div>
         <div class="card-body">
             {{-- Confirmation question --}}
-            Voulez-vous vraiment supprimer cette tâche ?
+            <div>
+                Voulez-vous vraiment supprimer cette tâche ?
+            </div>
         </div>
         <div class="card-footer justify-end">
             <div class="flex gap-4">
                 {{-- Cancel button --}}
-                <button class="btn btn-light" data-modal-dismiss="true">
+                <button type="button" class="btn btn-light" data-modal-dismiss="true">
                     Annuler
                 </button>
                 <form action="{{ route('common-life.destroy', ['commonLife' => $commonLife->task_id])}}" method="POST">

@@ -21,7 +21,7 @@ class CommonLifeController extends Controller
     // Stores a new task
     public function store(Request $request)
     {
-        $this->authorize('create', CommonLife::class);
+        // $this->authorize('create', CommonLife::class);
 
         $validated = $request->validate([
             'title' => 'required|string|max:255',
