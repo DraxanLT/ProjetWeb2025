@@ -27,16 +27,29 @@
             </div>
         </div>
         <div class="lg:col-span-1">
-            <div class="card h-full">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        Tâches réalisées
-                    </h3>
-                </div>
-                <div class="card-body">
+            <div class="grid gap-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            Tâches réalisées (Communes)
+                        </h3>
+                    </div>
+                    <div class="card-body">
 
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            Tâches réalisées (Vous)
+                        </h3>
+                    </div>
+                    <div class="card-body">
+
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
     <!-- end: grid -->

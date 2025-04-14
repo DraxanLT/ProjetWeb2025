@@ -4,7 +4,7 @@
         <div class="card-header">
             {{-- Form title --}}
             <h3 class="modal-title">
-                Notifier votre effort
+                Participer à cette tâche
             </h3>
             <button class="btn btn-xs btn-icon btn-light" data-modal-dismiss="true">
                 <i class="ki-outline ki-cross">
@@ -17,12 +17,12 @@
                 @csrf
                 {{-- Explanations --}}
                 <div>
-                    Vous avez fini cette tâche ? Mettez un commentaire expliquant ce que vous avez fait !
+                    Vous avez participé à cette tâche ? Vous pouvez mettre un commentaire expliquant ce que vous avez fait. Une fois votre commentaire posté, il ne sera pas possible de le modifier.
                 </div>
 
                 <input type="hidden" name="task_id" value="{{ $commonLife->task_id }}">
 
-                <x-forms.input name="comment" type="text" :label="__('Commentaire')" />
+                <x-forms.input name="comment" type="text" :label="__('Commentaire (facultatif)')" />
             </div>
             <div class="card-footer justify-end">
                 <div class="flex gap-4">
@@ -31,8 +31,8 @@
                         Annuler
                     </button>
                     {{-- Validate button --}}
-                    <x-forms.primary-button>
-                        {{ __('Notifier') }}
+                    <x-forms.primary-button class="btn-success">
+                        {{ __('Participer') }}
                     </x-forms.primary-button>
                 </div>
             </div>

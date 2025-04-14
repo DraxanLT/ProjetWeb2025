@@ -14,7 +14,7 @@ class CommentController extends Controller
     {
         $validated = $request->validate([
             'task_id' => 'required|exists:common_life,task_id',
-            'comment' => 'required|string|max:1000',
+            'comment' => 'nullable|string|max:1000',
         ]);
 
         $commonLife = CommonLife::where('task_id', $validated['task_id'])->firstOrFail();

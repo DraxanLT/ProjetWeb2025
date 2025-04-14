@@ -27,7 +27,7 @@
                     @csrf
                     @method('DELETE')
                     {{-- Delete button --}}
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-danger">
                         Supprimer
                     </button>
                 </form>
