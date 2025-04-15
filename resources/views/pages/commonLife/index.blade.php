@@ -22,6 +22,9 @@
                         </div>
                     </div>
                 @endforelse
+                @if(auth()->user()->is_admin)
+                    @include('pages.commonLife.partials.modal-add')
+                @endif
             </div>
         </div>
         <div class="lg:col-span-1">

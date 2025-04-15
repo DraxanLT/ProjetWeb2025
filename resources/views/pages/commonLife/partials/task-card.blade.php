@@ -58,7 +58,6 @@
                                 <div class="text-gray-600">Aucune participation pour le moment :(</div>
                             @endforelse
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -80,7 +79,6 @@
                     Supprimer
                 </button>
             @endif
-
         </div>
     </div>
 </div>
