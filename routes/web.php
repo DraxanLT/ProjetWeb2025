@@ -51,9 +51,9 @@ Route::middleware('auth')->group(function () {
         Route::put('common-life/{commonLife}', [CommonLifeController::class, 'update'])->name('common-life.update'); // Route to update the task from the db
             // Comment
             Route::post('comments', [CommentController::class, 'store'])->name('comments.store'); // Route to store a comment
-
+            Route::delete('comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy'); // Route to delete a comment
+            Route::patch('/comments/{comment}/update-comment', [CommentController::class, 'update'])->name('comments.update'); // Route to add a comment
     });
-
 });
 
 require __DIR__.'/auth.php';

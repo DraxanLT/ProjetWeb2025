@@ -37,13 +37,19 @@
                                     @if(auth()->id() === $comment->user_id || auth()->user()->is_admin)
                                     <div class="card-footer">
                                         @if(empty($comment->comment) && auth()->id() === $comment->user_id)
-                                            <button class="btn btn-primary" data-modal-toggle="#modal_add_comment">
+                                            <button class="btn btn-primary" data-modal-toggle="#modal_add_comment_{{ $comment->id }}">
                                                 Ajouter un commentaire
                                             </button>
+                                            @if(isset($comment))
+                                                @include('pages.commonLife.partials.modal-add-comment', ['commonLife' => $commonLife, 'comment' => $comment])
+                                            @endif
                                         @endif
-                                        <button class="btn btn-danger" data-modal-toggle="#modal_delete_comment">
-                                            Supprimer
-                                        </button>
+                                            <button class="btn btn-danger" data-modal-toggle="#modal_delete_comment_{{ $comment->id }}">
+                                                Supprimer
+                                            </button>
+                                            @if(isset($comment))
+                                                @include('pages.commonLife.partials.modal-delete_comment', ['commonLife' => $commonLife, 'comment' => $comment])
+                                            @endif
                                     </div>
                                     @endif
                                 </div>

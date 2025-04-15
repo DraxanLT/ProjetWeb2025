@@ -22,8 +22,6 @@
                         </div>
                     </div>
                 @endforelse
-
-                @include('pages.commonLife.partials.modal-add')
             </div>
         </div>
         <div class="lg:col-span-1">
