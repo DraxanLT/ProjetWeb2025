@@ -12,6 +12,7 @@ class Comment extends Model
     protected $fillable = [
         'task_id',
         'task_title',
+        'task_description',
         'user_id',
         'comment',
     ];

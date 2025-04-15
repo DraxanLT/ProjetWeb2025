@@ -34,15 +34,17 @@
                                         <p class="text-gray-600">{{ $comment->comment }}</p>
                                     </div>
                                     {{-- Comment buttons --}}
-                                    @if($comment->comment === null)
-                                        <div class="card-footer">
+                                    @if(auth()->id() === $comment->user_id || auth()->user()->is_admin)
+                                    <div class="card-footer">
+                                        @if(empty($comment->comment) && auth()->id() === $comment->user_id)
                                             <button class="btn btn-primary" data-modal-toggle="#modal_add_comment">
                                                 Ajouter un commentaire
                                             </button>
-                                            <button class="btn btn-danger" data-modal-toggle="#modal_delete_comment">
-                                                Supprimer
-                                            </button>
-                                        </div>
+                                        @endif
+                                        <button class="btn btn-danger" data-modal-toggle="#modal_delete_comment">
+                                            Supprimer
+                                        </button>
+                                    </div>
                                     @endif
                                 </div>
                             @empty
@@ -62,14 +64,17 @@
             <button class="btn btn-success" data-modal-toggle="#modal_notify_{{ $commonLife->task_id }}">
                 Participer
             </button>
-            {{-- Edit button --}}
-            <button class="btn btn-primary" data-modal-toggle="#modal_edit_{{ $commonLife->task_id }}">
-                Modifier
-            </button>
-            {{-- Delete button --}}
-            <button class="btn btn-danger" data-modal-toggle="#modal_delete_{{ $commonLife->task_id }}">
-                Supprimer
-            </button>
+            @if(auth()->user()->is_admin)
+                {{-- Edit button --}}
+                <button class="btn btn-primary" data-modal-toggle="#modal_edit_{{ $commonLife->task_id }}">
+                    Modifier
+                </button>
+                {{-- Delete button --}}
+                <button class="btn btn-danger" data-modal-toggle="#modal_delete_{{ $commonLife->task_id }}">
+                    Supprimer
+                </button>
+            @endif
+
         </div>
     </div>
 </div>

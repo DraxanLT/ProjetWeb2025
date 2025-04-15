@@ -22,6 +22,7 @@ class CommentController extends Controller
         Comment::create([
             'task_id' => $commonLife->task_id,
             'task_title' => $commonLife->title,
+            'task_description' => $commonLife->description,
             'user_id' => Auth::id(),
             'comment' => $validated['comment'],
         ]);
