@@ -31,7 +31,7 @@
                         Annuler
                     </button>
                     {{-- Validate button --}}
-                    <x-forms.primary-button class="btn-success">
+                    <x-forms.primary-button class="btn btn-outline btn-success">
                         {{ __('Participer') }}
                     </x-forms.primary-button>
                 </div>

@@ -25,7 +25,7 @@
                         Annuler
                     </button>
                     {{-- Validate button --}}
-                    <x-forms.primary-button>
+                    <x-forms.primary-button class="btn btn-outline btn-primary">
                         {{ __('Ajouter un commentaire') }}
                     </x-forms.primary-button>
                 </div>

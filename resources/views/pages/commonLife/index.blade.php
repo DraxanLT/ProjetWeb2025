@@ -36,7 +36,7 @@
                         </h3>
                     </div>
                     <div class="card-body">
-
+                        @include('pages.commonLife.partials.accordion_completed_tasks', ['commonLife' => $commonLife])
                     </div>
                 </div>
                 <div class="card">

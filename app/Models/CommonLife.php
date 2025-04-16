@@ -16,6 +16,10 @@ class CommonLife extends Model
         'description'
     ];
 
+    protected $casts = [
+        'completed' => 'boolean',
+    ];
+
     public function comments()
     {
         return $this->hasMany(Comment::class, 'task_id', 'task_id')->latest();

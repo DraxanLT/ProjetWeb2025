@@ -14,8 +14,10 @@ class CommonLifeController extends Controller
     // Shows all tasks
     public function index()
     {
-        $commonLifes = CommonLife::all();
-        return view('pages.commonLife.index', compact('commonLifes'));
+        //$commonLifes = CommonLife::all();
+        $commonLifes = CommonLife::where('completed', false)->get();
+        $completedTasks = CommonLife::where('completed', true)->get();
+        return view('pages.commonLife.index', compact('commonLifes', 'completedTasks'));
     }
 
     // Stores a new task

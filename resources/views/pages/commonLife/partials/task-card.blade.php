@@ -22,42 +22,40 @@
                     <i class="ki-outline ki-minus text-gray-600 text-2sm accordion-active:block hidden"></i>
                 </button>
                 <div class="accordion-content hidden" id="accordion_content_{{ $commonLife->task_id }}">
-                    <div class="text-gray-700 text-md pb-4">
-                        <div class="grid gap-1">
-                            @forelse($commonLife->comments as $comment)
-                                <div class="card">
-                                    <div class="card-body">
-                                        {{-- Notification that indicates the name of the participant with the date and time of his participation --}}
-                                        <div>
-                                            {{ $comment->user->first_name }} a participé à la tâche - <span class="text-xs text-gray-500">{{ $comment->created_at->format('d/m/Y à H:i') }}</span>
-                                        </div>
-                                        <p class="text-gray-600">{{ $comment->comment }}</p>
+                    <div class="grid gap-1">
+                        @forelse($commonLife->comments as $comment)
+                            <div class="card">
+                                <div class="card-body">
+                                    {{-- Notification that indicates the name of the participant with the date and time of his participation --}}
+                                    <div>
+                                        {{ $comment->user->first_name }} a participé à la tâche - <span class="text-xs text-gray-500">{{ $comment->created_at->format('d/m/Y à H:i') }}</span>
                                     </div>
-                                    {{-- Comment buttons --}}
-                                    @if(auth()->id() === $comment->user_id || auth()->user()->is_admin)
-                                    <div class="card-footer">
-                                        @if(empty($comment->comment) && auth()->id() === $comment->user_id)
-                                            <button class="btn btn-primary" data-modal-toggle="#modal_add_comment_{{ $comment->id }}">
-                                                Ajouter un commentaire
-                                            </button>
-                                            @if(isset($comment))
-                                                @include('pages.commonLife.partials.modal-add-comment', ['commonLife' => $commonLife, 'comment' => $comment])
-                                            @endif
-                                        @endif
-                                            <button class="btn btn-danger" data-modal-toggle="#modal_delete_comment_{{ $comment->id }}">
-                                                Supprimer
-                                            </button>
-                                            @if(isset($comment))
-                                                @include('pages.commonLife.partials.modal-delete_comment', ['commonLife' => $commonLife, 'comment' => $comment])
-                                            @endif
-                                    </div>
-                                    @endif
+                                    <p class="text-gray-600">{{ $comment->comment }}</p>
                                 </div>
-                            @empty
-                                {{-- Message that appears when there is no participation yet --}}
-                                <div class="text-gray-600">Aucune participation pour le moment :(</div>
-                            @endforelse
-                        </div>
+                                {{-- Comment buttons --}}
+                                @if(auth()->id() === $comment->user_id || auth()->user()->is_admin)
+                                <div class="card-footer">
+                                    @if(empty($comment->comment) && auth()->id() === $comment->user_id)
+                                        <button class="btn btn-outline btn-primary" data-modal-toggle="#modal_add_comment_{{ $comment->id }}">
+                                            Ajouter un commentaire
+                                        </button>
+                                        @if(isset($comment))
+                                            @include('pages.commonLife.partials.modal-add-comment', ['commonLife' => $commonLife, 'comment' => $comment])
+                                        @endif
+                                    @endif
+                                        <button class="btn btn-outline btn-danger" data-modal-toggle="#modal_delete_comment_{{ $comment->id }}">
+                                            Supprimer
+                                        </button>
+                                        @if(isset($comment))
+                                            @include('pages.commonLife.partials.modal-delete_comment', ['commonLife' => $commonLife, 'comment' => $comment])
+                                        @endif
+                                </div>
+                                @endif
+                            </div>
+                        @empty
+                            {{-- Message that appears when there is no participation yet --}}
+                            <div class="text-gray-600">Aucune participation pour le moment :(</div>
+                        @endforelse
                     </div>
                 </div>
             </div>
@@ -65,17 +63,23 @@
     </div>
     <div class="card-footer justify-center">
         <div class="btn-group gap-2">
+            @if(auth()->user()->is_admin)
+                {{-- Close button (placeholder) --}}
+                <button class="btn btn-outline btn-warning" data-modal-toggle="#modal_close_{{ $commonLife->task_id }}">
+                    Clôturer
+                </button>
+            @endif
             {{-- Notify button --}}
-            <button class="btn btn-success" data-modal-toggle="#modal_notify_{{ $commonLife->task_id }}">
+            <button class="btn btn-outline btn-success" data-modal-toggle="#modal_notify_{{ $commonLife->task_id }}">
                 Participer
             </button>
             @if(auth()->user()->is_admin)
                 {{-- Edit button --}}
-                <button class="btn btn-primary" data-modal-toggle="#modal_edit_{{ $commonLife->task_id }}">
+                <button class="btn btn-outline btn-primary" data-modal-toggle="#modal_edit_{{ $commonLife->task_id }}">
                     Modifier
                 </button>
                 {{-- Delete button --}}
-                <button class="btn btn-danger" data-modal-toggle="#modal_delete_{{ $commonLife->task_id }}">
+                <button class="btn btn-outline btn-danger" data-modal-toggle="#modal_delete_{{ $commonLife->task_id }}">
                     Supprimer
                 </button>
             @endif

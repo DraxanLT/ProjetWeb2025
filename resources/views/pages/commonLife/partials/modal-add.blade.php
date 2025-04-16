@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-body">
             {{-- Add button--}}
-            <button class="btn btn-primary" data-modal-toggle="#modal_add">
+            <button class="btn btn-outline btn-primary" data-modal-toggle="#modal_add">
                 Ajouter
             </button>
         </div>
@@ -34,7 +34,7 @@
                                 Annuler
                             </button>
                             {{-- Validate button --}}
-                            <x-forms.primary-button>
+                            <x-forms.primary-button class="btn btn-outline btn-primary">
                                 {{ __('Ajouter') }}
                             </x-forms.primary-button>
                         </div>
