@@ -54,7 +54,11 @@
                             </div>
                         @empty
                             {{-- Message that appears when there is no participation yet --}}
-                            <div class="text-gray-600">Aucune participation pour le moment :(</div>
+                            <div class="card">
+                                <div class="card-body">
+                                    Aucune participation pour le moment :(
+                                </div>
+                            </div>
                         @endforelse
                     </div>
                 </div>

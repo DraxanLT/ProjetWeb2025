@@ -14,10 +14,12 @@ class CommonLifeController extends Controller
     // Shows all tasks
     public function index()
     {
-        //$commonLifes = CommonLife::all();
-        $commonLifes = CommonLife::where('completed', false)->get();
-        $completedTasks = CommonLife::where('completed', true)->get();
-        return view('pages.commonLife.index', compact('commonLifes', 'completedTasks'));
+        $commonLifes = CommonLife::where('completed', false)->get(); // tasks in progress
+        $completedTasks = CommonLife::where('completed', true)->get(); // tasks completed
+        // tasks in which the user participated
+        $participatedTasks = CommonLife::whereHas('comments', function ($query) {$query->where('user_id', auth()->id());})->get();
+
+        return view('pages.commonLife.index', compact('commonLifes', 'completedTasks', 'participatedTasks'));
     }
 
     // Stores a new task

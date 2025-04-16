@@ -24,4 +24,12 @@ class CommonLife extends Model
     {
         return $this->hasMany(Comment::class, 'task_id', 'task_id')->latest();
     }
+
+    public function lastParticipationDate($userId)
+    {
+        return $this->comments()
+            ->where('user_id', $userId)
+            ->latest()
+            ->value('created_at');
+    }
 }
