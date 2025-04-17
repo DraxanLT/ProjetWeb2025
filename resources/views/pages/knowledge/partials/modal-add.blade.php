@@ -3,7 +3,7 @@
     <div class="card-body">
         {{-- Add button--}}
         <button class="btn btn-outline btn-primary" data-modal-toggle="#modal_add">
-            Ajouter
+            Créer un bilan
         </button>
     </div>
     {{-- Form that appears when you click on the "Add" button --}}
@@ -12,7 +12,7 @@
             <div class="card-header">
                 {{-- Form title --}}
                 <h3 class="modal-title">
-                    Créer un nouveau QCM
+                    Créer un nouveau bilan
                 </h3>
                 <button class="btn btn-xs btn-icon btn-light" data-modal-dismiss="true">
                     <i class="ki-outline ki-cross">
@@ -24,17 +24,22 @@
                     {{-- Form to add a new test --}}
                     @csrf
                     <x-forms.input name="title" type="text" :label="__('Titre du bilan')"/>
-
-                    <select class="select" name="languages[]" :label="'Langages à évaluer'" multiple>
-                        <option value="Python">Python</option>
-                        <option value="Java">Java</option>
-                        <option value="HTML">HTML</option>
-                        <option value="CSS">CSS</option>
-                        <option value="SQL">SQL</option>
-                        <option value="PHP">PHP</option>
-                        <option value="JavaScript">JavaScript</option>
-                        <option value="C#">C#</option>
-                    </select>
+                    {{-- Checkboxes to select the languages for the test --}}
+                    <div class="mb-4">
+                        <label class="form-label text-sm text-gray-700 dark:text-gray-300 mb-2">
+                            Langages à évaluer
+                        </label>
+                        <div class="grid grid-cols-2 gap-4">
+                            @foreach(['Python', 'Java', 'HTML', 'CSS', 'SQL', 'PHP', 'JavaScript', 'C#'] as $language)
+                                <label class="form-check form-check-custom form-check-solid flex items-center gap-2">
+                                    <input class="checkbox form-check-input" type="checkbox" name="languages[]" value="{{ $language }}" />
+                                    <span class="form-check-label text-sm text-gray-200">
+                                        {{ $language }}
+                                    </span>
+                                </label>
+                            @endforeach
+                        </div>
+                    </div>
 
                     <x-forms.input name="questions_nbr" type="text" :label="__('Nombre de questions')"/>
 

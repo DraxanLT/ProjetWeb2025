@@ -11,11 +11,17 @@
     <div class="grid lg:grid-cols-3 gap-5 lg:gap-7.5 items-stretch">
         <div class="lg:col-span-2">
             <div class="grid gap-2">
-                <div class="card">
-                    <div class="card-body">
-                        Tempo
+                {{-- List of all tests --}}
+                @forelse($commonLifes as $commonLife)
+                    @include('pages.knowledge.partials.bilan-card', ['commonLife' => $commonLife])
+                @empty
+                    {{-- Card that says there is no test currently --}}
+                    <div class="card">
+                        <div class="card-body">
+                            Pas de bilan pour le moment :(
+                        </div>
                     </div>
-                </div>
+                @endforelse
                 @if(auth()->user()->is_admin)
                     @include('pages.knowledge.partials.modal-add')
                 @endif
