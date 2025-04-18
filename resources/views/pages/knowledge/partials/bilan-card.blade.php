@@ -13,13 +13,24 @@
         <div>
             Langages : {{ implode(' - ', $knowledge->languages) }}
         </div>
+        @if($knowledge->answered)
+        <div>
+            Note : {{ $knowledge->grade }}/20
+        </div>
+        @endif
     </div>
     <div class="card-footer justify-center">
         <div class="btn-group gap-2">
             {{-- Notify button --}}
-            <a class="btn btn-outline btn-success" href="{{ route('knowledge.fill', $knowledge->id) }}">
-                Remplir le bilan
-            </a>
+            @if($knowledge->answered)
+                <button class="btn btn-outline btn-success" disabled="">
+                    Déjà répondu
+                </button>
+            @else
+                <a class="btn btn-outline btn-success" href="{{ route('knowledge.fill', $knowledge->id) }}">
+                    Remplir le bilan
+                </a>
+            @endif
             @if(auth()->user()->is_admin)
                 {{-- Delete button --}}
                 <button class="btn btn-outline btn-danger" data-modal-toggle="#modal_delete_{{ $knowledge->id }}">

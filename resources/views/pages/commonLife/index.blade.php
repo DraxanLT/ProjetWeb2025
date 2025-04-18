@@ -32,11 +32,11 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">
-                            Historique commune
+                            Historique commun
                         </h3>
                     </div>
                     <div class="card-body">
-                        @include('pages.commonLife.partials.accordion_common_completed_tasks', ['commonLife' => $commonLife])
+                        @include('pages.commonLife.partials.accordion_common_completed_tasks')
                     </div>
                 </div>
                 <div class="card">
@@ -46,7 +46,7 @@
                         </h3>
                     </div>
                     <div class="card-body">
-                        @include('pages.commonLife.partials.accordion_individual_completed_tasks', ['$commonLife' => $commonLife])
+                        @include('pages.commonLife.partials.accordion_individual_completed_tasks')
                     </div>
                 </div>
             </div>

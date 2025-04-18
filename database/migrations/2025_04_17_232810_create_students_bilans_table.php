@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('students_bilans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')->constrained()->onDelete('cascade'); // id for the student
+            $table->foreignId('student_id')->constrained('users')->onDelete('cascade'); // id for the student
             $table->foreignId('knowledge_id')->constrained('knowledges')->onDelete('cascade'); // id for the knowledge test
             $table->float('grade')->nullable();
             $table->timestamps();

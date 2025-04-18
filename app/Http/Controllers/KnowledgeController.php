@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Knowledge;
 use App\Models\Question;
+use App\Models\StudentBilan;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -19,9 +20,16 @@ class KnowledgeController extends Controller
      */
     public function index() {
 
-        $knowledgeTests = Knowledge::all();
+        $knowledges = Knowledge::all()->map(function ($knowledge) {
+            $studentsBilans = StudentBilan::where('student_id', auth()->id())->where('knowledge_id', $knowledge->id)->first();
 
-        return view('pages.knowledge.index', compact('knowledgeTests'));
+            $knowledge->answered = !is_null($studentsBilans);
+            $knowledge->grade = $studentsBilans?->grade;
+
+            return $knowledge;
+        });
+
+        return view('pages.knowledge.index', compact('knowledges'));
     }
 
     public function store(Request $request)
@@ -91,12 +99,12 @@ class KnowledgeController extends Controller
 
     public function fill(Knowledge $knowledge)
     {
-        $user = auth()->user();
+        $user = auth()->user(); // get connected user
 
-        $answered = false;
+        $answered = StudentBilan::where('student_id', $user->id)->where('knowledge_id', $knowledge->id)->first(); // check if the bilan has already been answered
 
-        if ($answered) {
-            return view('pages.knowledge.already-submitted', compact('knowledge'));
+        if ($answered) { // redirect to the knowledge page if the bilan has been answered
+            return view('pages.knowledge.already-submitted', ['knowledge' => $knowledge, 'grade' => $answered->grade,]);
         }
 
         $questions = $knowledge->questions;
@@ -106,14 +114,53 @@ class KnowledgeController extends Controller
 
     public function submit(Request $request, Knowledge $knowledge)
     {
-        $user = auth()->user();
+        $user = auth()->user(); // get connected user
 
-        $answered = false;
+        $answered = StudentBilan::where('student_id', $user->id)->where('knowledge_id', $knowledge->id)->exists();
 
         if ($answered) {
             return redirect()->route('knowledge.fill', $knowledge);
         }
-        $answers = $request->input('answers');
+        // get every answer submitted by the user
+        $answers = $request->input('answers', []);
+        $score = 0;
+        $total = 0;
+
+        // go through all questions
+        foreach ($knowledge->questions as $question)
+        {
+            // get the answers given by the user for this question
+            if (isset($answers[$question->id])) {
+                $userAnswers = $answers[$question->id];
+            } else {
+                $userAnswers = [];
+            }
+            // get the correct answers
+            $correctAnswers = $question->correct_answers;
+
+            // Sort answers for btter comparisons
+            sort($userAnswers);
+            sort($correctAnswers);
+
+            // increment the score if the user is correct
+            if ($userAnswers === $correctAnswers) {
+                $score++;
+            }
+            $total++;
+        }
+        // calculate the grade on 20, rounded to 2 (Ex : 14.50/20, 16.53/20)
+        if ($total > 0) {
+            $grade = round(($score / $total) * 20, 2);
+        } else {
+            $grade = 0;
+        }
+
+        // store the grade linked to the user and the bilan
+        StudentBilan::create([
+            'student_id' => $user->id,
+            'knowledge_id' => $knowledge->id,
+            'grade' => $grade,
+        ]);
 
         return redirect()->route('knowledge.index', $knowledge);
     }

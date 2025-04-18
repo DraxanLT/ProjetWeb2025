@@ -12,7 +12,7 @@
         <div class="lg:col-span-2">
             <div class="grid gap-2">
                 {{-- List of all tests --}}
-                @forelse($knowledgeTests as $knowledge)
+                @forelse($knowledges as $knowledge)
                     @include('pages.knowledge.partials.bilan-card', ['$knowledgeTest' => $knowledge])
                 @empty
                     {{-- Card that says there is no test currently --}}

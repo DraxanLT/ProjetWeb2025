@@ -26,7 +26,7 @@
                     {{-- Card that says there is no task completed --}}
                     <div class="card">
                         <div class="card-body">
-                            Aucune tâche complétées :(
+                            Aucune tâche complétée :(
                         </div>
                     </div>
                 @endforelse
