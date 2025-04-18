@@ -58,7 +58,7 @@ class KnowledgeController extends Controller
         N'explique rien, ne commente rien. Retourne que du JSON brut valide";
 
         // API key
-        $key = env('MISTRAL_API_KEY'); //'jwVXdtjCOn2ohEb5FRAHk3T93KrFSJHe'; // much more secure
+        $key = env('MISTRAL_API_KEY'); // much more secure
         $response = Http::withOptions(['verify' => false,
         ])->withHeaders(['Authorization' => 'Bearer ' . $key, 'Content-Type' => 'application/json',])
             ->post('https://api.mistral.ai/v1/chat/completions', ['model' => 'mistral-small', 'messages' => [

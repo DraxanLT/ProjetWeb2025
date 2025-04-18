@@ -68,4 +68,16 @@ class CommonLifeController extends Controller
 
         return redirect()->route('common-life.index');
     }
+
+    // close a task
+    public function close(CommonLife $commonLife)
+    {
+        $this->authorize('update', $commonLife); // Verify if the user can close the task
+
+        $commonLife->update([
+            'completed' => true,
+        ]);
+
+        return redirect()->route('common-life.index');
+    }
 }

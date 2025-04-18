@@ -95,3 +95,4 @@
 @include('pages.commonLife.partials.modal-edit', ['commonLife' => $commonLife])
 @include('pages.commonLife.partials.modal-delete', ['commonLife' => $commonLife])
 @include('pages.commonLife.partials.modal-notify', ['commonLife' => $commonLife])
+@include('pages.commonLife.partials.modal-close', ['commonLife' => $commonLife])

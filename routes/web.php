@@ -54,7 +54,8 @@ Route::middleware('auth')->group(function () {
         Route::post('common-life', [CommonLifeController::class, 'store'])->name('common-life.store'); // Route to store the task in the db
         Route::delete('common-life/{commonLife}', [CommonLifeController::class, 'destroy'])->name('common-life.destroy'); // Route to delete the task from the db
         Route::put('common-life/{commonLife}', [CommonLifeController::class, 'update'])->name('common-life.update'); // Route to update the task from the db
-            // Comment
+        Route::patch('common-life/{commonLife}', [CommonLifeController::class, 'close'])->name('common-life.close'); // Route to close a task from the db
+        // Comment
             Route::post('comments', [CommentController::class, 'store'])->name('comments.store'); // Route to store a comment
             Route::delete('comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy'); // Route to delete a comment
             Route::patch('/comments/{comment}/update-comment', [CommentController::class, 'update'])->name('comments.update'); // Route to add a comment
