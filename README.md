@@ -51,6 +51,12 @@ devant les features nécéssaires.
 c'est un projet important pour notre année, c'est compréhensible.
 - Le fait que le projet soit individuel et non en groupe est un peu décevant. Cependant, cela reste compréhensible.
 
+### + - Plus
+
+J'ai fait l'erreur de trop être pris sur mes idées qui me venaient pendant le projet que les fonctionnalités demandées par le backlog,
+j'en prends compte et je ferai en sorte de plus me concentrer sur l'essentiel que sur le bonus. Je n'ai pas pu implémenter
+la possibilité d'affecter des promotions à des tâches et/ou des bilans par negligence, je m'en excuse.
+
 ---
 
 ## 👤 - À faire pour tester
