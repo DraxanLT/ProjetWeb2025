@@ -31,4 +31,11 @@ class Knowledge extends Model
     {
         return $this->belongsToMany(Cohort::class, 'cohort_bilans');
     }
+
+    public function students()
+    {
+        return $this->belongsToMany(User::class, 'students_bilans')
+            ->withPivot('grade')
+            ->withTimestamps();
+    }
 }

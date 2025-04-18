@@ -18,7 +18,10 @@ class KnowledgeController extends Controller
      * @return Factory|View|Application|object
      */
     public function index() {
-        return view('pages.knowledge.index');
+
+        $knowledgeTests = Knowledge::all();
+
+        return view('pages.knowledge.index', compact('knowledgeTests'));
     }
 
     public function store(Request $request)
@@ -57,7 +60,7 @@ class KnowledgeController extends Controller
 
         // get the answer from mistral
         $data = $response->json();
-        $content = $data['choices'][0]['message']['content'];
+        $content = $data['choices'][0]['message']['content']; // Get the generated text (first answer)
 
         // Removes annoying characters
         $content = str_replace(['"""', "```json", "```"], '', trim($content));
@@ -82,6 +85,42 @@ class KnowledgeController extends Controller
                 'difficulty' => $question['difficulty'],
             ]);
         }
+
+        return redirect()->route('knowledge.index');
+    }
+
+    public function fill(Knowledge $knowledge)
+    {
+        $user = auth()->user();
+
+        $answered = false;
+
+        if ($answered) {
+            return view('pages.knowledge.already-submitted', compact('knowledge'));
+        }
+
+        $questions = $knowledge->questions;
+
+        return view('pages.knowledge.answer', compact('knowledge', 'questions'));
+    }
+
+    public function submit(Request $request, Knowledge $knowledge)
+    {
+        $user = auth()->user();
+
+        $answered = false;
+
+        if ($answered) {
+            return redirect()->route('knowledge.fill', $knowledge);
+        }
+        $answers = $request->input('answers');
+
+        return redirect()->route('knowledge.index', $knowledge);
+    }
+
+    public function destroy(Knowledge $knowledge)
+    {
+        $knowledge->delete();
 
         return redirect()->route('knowledge.index');
     }

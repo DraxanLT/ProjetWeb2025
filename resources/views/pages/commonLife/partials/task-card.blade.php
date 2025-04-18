@@ -91,7 +91,6 @@
     </div>
 </div>
 
-
 {{-- Modal inclusions --}}
 @include('pages.commonLife.partials.modal-edit', ['commonLife' => $commonLife])
 @include('pages.commonLife.partials.modal-delete', ['commonLife' => $commonLife])

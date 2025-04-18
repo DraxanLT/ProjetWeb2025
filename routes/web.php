@@ -37,7 +37,11 @@ Route::middleware('auth')->group(function () {
 
         // Knowledge
         Route::get('knowledge', [KnowledgeController::class, 'index'])->name('knowledge.index');
-        Route::post('knowledge', [KnowledgeController::class, 'store'])->name('knowledge.store');
+        Route::post('knowledge', [KnowledgeController::class, 'store'])->name('knowledge.store'); // Route to store the ai generated test in the db
+        Route::get('knowledge/{knowledge}', [KnowledgeController::class, 'fill'])->name('knowledge.fill'); // Route to go to the page to fill the test
+        Route::post('knowledge/{knowledge}/submit', [KnowledgeController::class, 'submit'])->name('knowledge.submit'); // Route to submit the answers of the test
+        Route::delete('knowledge/{knowledge}', [KnowledgeController::class, 'destroy'])->name('knowledge.destroy'); // Route to delete a test with its questions
+
 
         // Groups
         Route::get('groups', [GroupController::class, 'index'])->name('group.index');
