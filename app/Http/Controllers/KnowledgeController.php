@@ -35,7 +35,7 @@ class KnowledgeController extends Controller
 
         // prompt to generate the test
         $languagesList = implode(', ', $validated['languages']);
-        $prompt = "Génère un QCM avec {$validated['questions_nbr']} questions sur les langages : {$languagesList}.
+        $prompt = "En français, génère un QCM avec {$validated['questions_nbr']} questions sur les langages : {$languagesList}.
         {$validated['answers_nbr']} propositions de réponse par questions (30% faciles, 40% moyennes, 30% difficiles) et avec une ou plusieurs bonnes réponses.
         Donne les résultats dans un JSON avec cette structure :
         [
