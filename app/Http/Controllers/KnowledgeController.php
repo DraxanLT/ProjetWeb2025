@@ -58,7 +58,7 @@ class KnowledgeController extends Controller
         N'explique rien, ne commente rien. Retourne que du JSON brut valide";
 
         // API key
-        $key = 'jwVXdtjCOn2ohEb5FRAHk3T93KrFSJHe'; //env('MISTRAL_API_KEY'); // much more secure
+        $key = env('MISTRAL_API_KEY'); //'jwVXdtjCOn2ohEb5FRAHk3T93KrFSJHe'; // much more secure
         $response = Http::withOptions(['verify' => false,
         ])->withHeaders(['Authorization' => 'Bearer ' . $key, 'Content-Type' => 'application/json',])
             ->post('https://api.mistral.ai/v1/chat/completions', ['model' => 'mistral-small', 'messages' => [
@@ -104,7 +104,7 @@ class KnowledgeController extends Controller
         $answered = StudentBilan::where('student_id', $user->id)->where('knowledge_id', $knowledge->id)->first(); // check if the bilan has already been answered
 
         if ($answered) { // redirect to the knowledge page if the bilan has been answered
-            return view('pages.knowledge.already-submitted', ['knowledge' => $knowledge, 'grade' => $answered->grade,]);
+            return redirect()->route('knowledge.index');
         }
 
         $questions = $knowledge->questions;

@@ -1,35 +1,63 @@
-# 🚀 Coding Tool Box – Guide d'installation
+# 🚀 Projet Web 2025 par Draxan LAUNAY-TRAN
 
-Bienvenue dans **Coding Tool Box**, un outil complet de gestion pédagogique conçu pour la Coding Factory.  
-Ce projet Laravel inclut la gestion des groupes, promotions, étudiants, rétro (Kanban), QCM  dynamiques, et bien plus.
-
----
-
-## 📦 Prérequis
-
-Assurez-vous d’avoir les éléments suivants installés sur votre machine :
-
-- PHP ≥ 8.1
-- Composer
-- MySQL ou MariaDB
-- Node.js + npm (pour les assets frontend si nécessaire)
-- Laravel CLI (`composer global require laravel/installer`)
+Ce ReadMe sert de synthèse à mes avancées dans le développement du projet.
 
 ---
 
-## ⚙️ Installation du projet
+## 📦 - Backlog 2
 
-Exécutez les étapes ci-dessous pour lancer le projet en local :
+Pour ce projet, j'ai décidé de me concentrer sur le backlog 2 pour les défis techniques qu'il me propose.
 
-### 1. Cloner le dépôt
+Je pense avoir effectué PRESQUE **toutes les stories d'après ce que j'ai compris**.
 
-```bash
-git clone https://m_thibaud@bitbucket.org/m_thibaud/projet-web-2025.git
-cd coding-tool-box
-cp .env.example .env
-```
+En effet, en regardant les projets de mes camarades (par pure curiosité), j'ai remarqué quelques différences 
+au niveau de la partie des tâches de la vie commune (Common-Life).  
+J'ai compris que les tâches servaient comme des fiches d'avancement, comme l'idée du suivi du ménage dans la 
+Coding Factory : chaque fois que quelqu'un nettoie un endroit (toilettes, cuisines, ...), il le mentionne sur une fiche
+en indiquant son nom et prénom suivi de ce qu'il a fait.  
+Là, c'est presque pareil, il clique sur le bouton "Participer" et explique ce qu'il a fait s'il le souhaite, même s'il 
+n'explique pas ce qu'il a fait, il sera compté comme participant.
 
-### 2. Configuration de l'environnement
+Mes camarades, eux, ont fait en sorte que chaque tâche soit prenable par une seule personne à la fois.  
+Moi, j'ai plus pensé au côté communautaire qui me semble être le but de ces stories (1, 2 et 3).
+
+---
+
+## 🚧 - Fonctionnalité manquante
+
+- Affecter une/des promotion(s) à une tâche/un bilan.
+
+---
+
+## 💻 - Mes idées non-implémentées
+
+- Mettre un nombre limite de participations à une tâche pour qu'elle se clôture elle-même.
+- Mettre un bouton pour modifier un bilan en cas d'erreur de génération par Mistral IA.
+
+---
+
+## ⚙️ - Mon avis sur le projet
+
+### ❤️ - Positif
+
+- **Laravel** est, je trouve, un bon moyen de créer des sites dynamiques et je pense réutiliser ce framework pour des projets
+personnels.
+- Ce genre de projet complexe offre plein de **possibilités**, **d'idées supplémentaires** à un point où je laisse passer les bonus
+devant les features nécéssaires.
+
+### 💔 - Négatif
+
+- C'était bien plus **complexe** que ce qu'on a fait cette année, légèrement plus complexe que le projet Flash, mais puisque
+c'est un projet important pour notre année, c'est compréhensible.
+- Le fait que le projet soit individuel et non en groupe est un peu décevant. Cependant, cela reste compréhensible.
+
+---
+
+## 👤 - À faire pour tester
+
+### Il suffit de suivre la procédure classique :
+
+### 1️⃣ - Configuration de l'environnement
 
 ```bash
 ✍️ Ouvrez le fichier .env et configurez les paramètres liés à votre base de données :
@@ -37,33 +65,37 @@ cp .env.example .env
 DB_DATABASE=nom_de_votre_bdd
 DB_USERNAME=utilisateur
 DB_PASSWORD=motdepasse
+
+# plus loin (à la fin du .env si vous voulez)
+
+MISTRAL_API_KEY=votre_clé_mistral
 ```
 
-### 3. Installation des dépendances PHP
+### 2️⃣ - Installation des dépendances PHP
 
 ```bash
 composer install
 ```
 
-### 4. Nettoyage et optimisation du cache
+### 3️⃣ - Nettoyage et optimisation du cache
 
 ```bash
 php artisan optimize:clear
 ```
 
-### 5. Génération de la clé d'application
+### 4️⃣ - Génération de la clé d'application
 
 ```bash
 php artisan key:generate
 ```
 
-### 6. Migration de la base de données
+### 5️⃣ - Migration de la base de données
 
 ```bash
 php artisan migrate
 ```
 
-### 7. Population de la base (Données de test)
+### 6️⃣ - Population de la base (Données de test)
 
 ```bash
 php artisan db:seed
@@ -71,7 +103,7 @@ php artisan db:seed
 
 ---
 
-## 💻 Compilation des assets (si nécessaire)
+## 💻 - Compilation des assets (si nécessaire)
 
 ```bash
 npm install
@@ -79,22 +111,3 @@ npm run dev
 ```
 
 ---
-
-## 👤 Comptes de test disponibles
-
-| Rôle       | Email                         | Mot de passe |
-|------------|-------------------------------|--------------|
-| **Admin**  | admin@codingfactory.com       | 123456       |
-| Enseignant | teacher@codingfactory.com     | 123456       |
-| Étudiant   | student@codingfactory.com     | 123456       |
-
----
-
-## 🚧 Fonctionnalités principales
-
-- 🔧 Gestion des groupes, promotions, étudiants
-- 📅 Vie commune avec système de pointage
-- 📊 Bilans semestriels étudiants via QCM générés par IA
-- 🧠 Génération automatique de QCM par langage sélectionné
-- ✅ Système de Kanban pour les rétrospectives
-- 📈 Statistiques d’usage et suivi pédagogique
